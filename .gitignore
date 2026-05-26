@@ -1,0 +1,47 @@
+# ==========================================
+# 1. Streamlit Specific Ignores
+# ==========================================
+.streamlit/
+!.streamlit/config.toml
+!.streamlit/secrets.toml
+.streamlit_vendor/
+**/.streamlit_vendor/
+
+# ==========================================
+# 2. Python Environment & Virtual Environments
+# ==========================================
+# Ignores your local 'venv' and 'ids_env' folders completely
+venv/
+ids_env/
+env/
+ENV/
+.venv/
+.env/
+
+# Python caching mechanisms
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# ==========================================
+# 3. Machine Learning Artifacts & Massive Data Files
+# ==========================================
+# Ignore large raw property datasets
+*.csv
+*.xlsx
+*.json
+
+# OPTIONAL: Un-comment the lines below if you want to keep your model files 
+# out of GitHub (recommended if they are larger than 100MB)
+# *.pkl
+# *.joblib
+
+# ==========================================
+# 4. Operating System Junk (Crucial for Windows!)
+# ==========================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
