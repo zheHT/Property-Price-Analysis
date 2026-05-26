@@ -10,11 +10,6 @@ from pathlib import Path
 import pickle
 import sys
 
-APP_DIR = Path(__file__).resolve().parent
-VENDOR_DIR = APP_DIR / ".streamlit_vendor"
-if VENDOR_DIR.exists() and str(VENDOR_DIR) not in sys.path:
-    sys.path.insert(0, str(VENDOR_DIR))
-
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
