@@ -21,5 +21,37 @@ Analyzed Kuala Lumpur residential transactions to build a classification model t
 * **ML:** Scikit-Learn, XGBoost
 * **Environment:** Google Colab & Google Drive
 
+---
 
+## 🚀 Streamlit Setup Guide
+
+## 📌 Requirements
+Make sure you have:
+- Python **3.9 or above** (recommended: 3.10 / 3.11)
+- pip (latest version recommended)
+
+Check versions:
+```bash
+python --version
+pip --version
+```
+---
+
+📦 Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+📌 If Streamlit is not installed:
+```bash
+pip install streamlit
+```
+
+▶️ Run the Application
+```bash
+python3 -m streamlit run app.py
+```
+
+Then open in your browser:
+http://localhost:8501
 ---

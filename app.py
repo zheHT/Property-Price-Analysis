@@ -10,6 +10,11 @@ from pathlib import Path
 import pickle
 import sys
 
+APP_DIR = Path(__file__).resolve().parent
+VENDOR_DIR = APP_DIR / ".streamlit_vendor"
+if VENDOR_DIR.exists() and str(VENDOR_DIR) not in sys.path:
+    sys.path.insert(0, str(VENDOR_DIR))
+
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
@@ -17,8 +22,6 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
-
-APP_DIR = Path(__file__).resolve().parent
 
 # ─────────────────────────────────────────────────────────────
 # PAGE CONFIGURATION
@@ -516,7 +519,10 @@ def build_feature_matrix(
     )
 
     features = pd.concat([raw_df[["Mukim_Rank"]], scaled_num, encoded], axis=1)
-    features["Log_Area"] = np.log1p(raw_df["Effective Area (sqft)"])
+    scaled_area = features["Effective Area (sqft)"]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        log_area = np.log1p(scaled_area)
+    features["Log_Area"] = log_area.replace([np.inf, -np.inf], np.nan).fillna(0)
     features["Year_Rank"] = raw_df["Transaction Year"] * features["Mukim_Rank"]
     features["Area_Prestige"] = features["Log_Area"] * features["Mukim_Rank"]
     return features.reindex(columns=feature_names, fill_value=0)
